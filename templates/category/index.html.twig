@@ -5,11 +5,13 @@
 {% endblock %}
 
 {% block body %}
-    <div class="example-wrapper mx-auto max-w-2xl w-95 text-base leading-6 font-sans">
+    <div class="container mx-auto max-w-2xl p-4">
         {% for category in categories %}
-            <div class="mb-4">{{ category.name }}</div>
+            <div class="bg-white p-6 mb-4 shadow-md rounded-md">
+                <h2 class="text-lg font-semibold text-gray-800">{{ category.name }}</h2>
+            </div>
         {% else %}
-            <p class="text-gray-700">Nothing found</p>
+            <p class="text-gray-700">Aucune catégorie trouvée</p>
         {% endfor %}
     </div>
 {% endblock %}
