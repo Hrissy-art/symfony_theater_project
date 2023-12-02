@@ -26,6 +26,13 @@ class Article
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $author = null;
 
+    #[ORM\ManyToOne(inversedBy: 'name')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Category $category = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $summaryShow = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -75,6 +82,30 @@ class Article
     public function setAuthor(?string $author): static
     {
         $this->author = $author;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): static
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    public function getSummaryShow(): ?string
+    {
+        return $this->summaryShow;
+    }
+
+    public function setSummaryShow(?string $summaryShow): static
+    {
+        $this->summaryShow = $summaryShow;
 
         return $this;
     }
