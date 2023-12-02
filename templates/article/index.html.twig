@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Articles
+{% endblock %}
+
+{% block body %}
+{% for article in articles %}
+
+<div>{{ article.nameShow }}</div>
+
+{% else %}
+<p>Nothing to show</p>
+{% endfor %}
+{% endblock %}
