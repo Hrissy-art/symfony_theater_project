@@ -1,15 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-  {{ category.name }}
+    {{ category.name }}
 {% endblock %}
 
 {% block body %}
-  <h1>{{ category.name }}</h1>
+    <h1 class="text-2xl font-bold mb-4">{{ category.name }}</h1>
 
-  {% for article in category.articles %}
-    {% include 'article/_card_article.html.twig' with { article: article } only %}
-  {% else %}
-    <p>Aucun article dans cette catégorie</p>
-  {% endfor %}
+    {% for article in category.articles %}
+        {% include 'article/_card_article.html.twig' with { article: article } only %}
+    {% else %}
+        <p class="text-gray-600">Aucun article dans cette catégorie</p>
+    {% endfor %}
 {% endblock %}

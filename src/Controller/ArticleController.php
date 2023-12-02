@@ -13,11 +13,11 @@ class ArticleController extends AbstractController
     public function index(ArticleRepository $articleRepository): Response
     {
         $articles = $articleRepository->findAll();
-        return $this->render('article/index.html.twig', [
+        return $this->render('article/list.html.twig', [
             'articles' => $articles,
         ]);
     }
-    #[Route('/articles/{id<\d+> ', name: 'item_article')]
+    #[Route('/articles/{id<\d+>}', name: 'item_article')]
         public function item(ArticleRepository $articleRepository, $id): response
         {
             $article = $articleRepository->find($id);
