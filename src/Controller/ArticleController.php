@@ -17,4 +17,34 @@ class ArticleController extends AbstractController
             'articles' => $articles,
         ]);
     }
-}
+    #[Route('/articles/{id<\d+> ', name: 'item_article')]
+        public function item(ArticleRepository $articleRepository, $id): response
+        {
+            $article = $articleRepository->find($id);
+            return $this->render('article/item.html.twig', [
+    'article' => $article,
+            ]);
+        }
+    
+    //     #[Route('/articles/new',name: 'new_article' )]
+    //     public function new(Request $request, EntityManagerInterface $em) : Response
+     
+    //     {
+    //         $article = new Article();
+    
+    //         $form = $this->createForm(ArticleType::class, $article);
+    //         $form -> handlerequest($request);
+    
+    // if ($form ->isSubmitted() && $form ->isValid())
+    // {
+    //     $em->persist($article);
+    //     $em-> flush();
+    
+    //     return $this ->redirectToRoute('home');
+    // }
+    // return $this->renderForm("article/new.html.twig",
+    //         ['article_form' => $form]);
+    //     }
+       
+    }
+
