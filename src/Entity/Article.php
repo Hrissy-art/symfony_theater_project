@@ -38,6 +38,9 @@ class Article
     #[ORM\ManyToMany(targetEntity: Theater::class, mappedBy: 'name')]
     private Collection $theaters;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $img = null;
+
     public function __construct()
     {
         $this->theaters = new ArrayCollection();
@@ -143,6 +146,18 @@ class Article
         if ($this->theaters->removeElement($theater)) {
             $theater->removeName($this);
         }
+
+        return $this;
+    }
+
+    public function getImg(): ?string
+    {
+        return $this->img;
+    }
+
+    public function setImg(?string $img): static
+    {
+        $this->img = $img;
 
         return $this;
     }
