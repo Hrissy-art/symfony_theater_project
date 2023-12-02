@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ArticleRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -32,6 +34,14 @@ class Article
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $summaryShow = null;
+
+    #[ORM\ManyToMany(targetEntity: Theater::class, mappedBy: 'name')]
+    private Collection $theaters;
+
+    public function __construct()
+    {
+        $this->theaters = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -106,6 +116,33 @@ class Article
     public function setSummaryShow(?string $summaryShow): static
     {
         $this->summaryShow = $summaryShow;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Theater>
+     */
+    public function getTheaters(): Collection
+    {
+        return $this->theaters;
+    }
+
+    public function addTheater(Theater $theater): static
+    {
+        if (!$this->theaters->contains($theater)) {
+            $this->theaters->add($theater);
+            $theater->addName($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTheater(Theater $theater): static
+    {
+        if ($this->theaters->removeElement($theater)) {
+            $theater->removeName($this);
+        }
 
         return $this;
     }
