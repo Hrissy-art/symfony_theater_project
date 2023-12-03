@@ -30,6 +30,8 @@ class ArticleCrudController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $article->setCreatedOn(new \DateTime());
+            $article->setUser($this->getUser());
             $entityManager->persist($article);
             $entityManager->flush();
 

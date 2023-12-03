@@ -57,6 +57,21 @@ class ArticleController extends AbstractController
     return $this->renderForm("article/new.html.twig",
             ['article_form' => $form]);
         }
+        #[Route('/articles/me', name: 'articles_me')]
+        public function articlesByConnectedUser(): Response
+        {
+            $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+            $user = $this->getUser();
+    
+            // Type-Guard
+            if (!$user instanceof User) {
+                return $this->redirectToRoute('home');
+            }
+    
+            $articles = $user->getArticles();
+    
+            return $this->render('article/me.html.twig', ['articles' => $articles]);
+        }
        
     }
 
