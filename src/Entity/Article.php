@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
 class Article
@@ -17,6 +18,11 @@ class Article
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Title is required')]
+    #[Assert\Length(max: 50)]
+    #[assert\File(maxSize: '50k')]
+
+
     private ?string $nameShow = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
@@ -138,7 +144,7 @@ class Article
     {
         if (!$this->theaters->contains($theater)) {
             $this->theaters->add($theater);
-            $theater->addName($this);
+            $theater->addArticle($this);
         }
 
         return $this;
@@ -147,7 +153,7 @@ class Article
     public function removeTheater(Theater $theater): static
     {
         if ($this->theaters->removeElement($theater)) {
-            $theater->removeName($this);
+            $theater->removeArticle($this);
         }
 
         return $this;

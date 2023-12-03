@@ -32,7 +32,7 @@ class CategoryController extends AbstractController
             'category' => $category,
         ]);
     }
-    #[Route('/new', name: 'new_category')]
+    #[Route('/category/new', name: 'new_category')]
     public function new(Request $request, EntityManagerInterface $entity): Response
     {
         $category = new Category();
