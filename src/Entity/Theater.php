@@ -15,12 +15,15 @@ class Theater
     #[ORM\Column]
     private ?int $id = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $name = null;
+
     #[ORM\ManyToMany(targetEntity: Article::class, inversedBy: 'theaters')]
-    private Collection $name;
+    private Collection $articles; // Changer le nom de la propriété pour éviter la confusion
 
     public function __construct()
     {
-        $this->name = new ArrayCollection();
+        $this->articles = new ArrayCollection(); // Changer le nom de la propriété pour éviter la confusion
     }
 
     public function getId(): ?int
@@ -28,26 +31,38 @@ class Theater
         return $this->id;
     }
 
-    /**
-     * @return Collection<int, Article>
-     */
-    public function getName(): Collection
+    public function getName(): ?string
     {
         return $this->name;
     }
 
-    public function addName(Article $name): static
+    public function setName(string $name): static
     {
-        if (!$this->name->contains($name)) {
-            $this->name->add($name);
+        $this->name = $name;
+
+        return $this;
+    }
+    
+    /**
+     * @return Collection<int, Article>
+     */
+    public function getArticles(): Collection // Changer le nom de la méthode pour éviter la confusion
+    {
+        return $this->articles;
+    }
+
+    public function addArticle(Article $article): static // Changer le nom du paramètre pour éviter la confusion
+    {
+        if (!$this->articles->contains($article)) {
+            $this->articles->add($article);
         }
 
         return $this;
     }
 
-    public function removeName(Article $name): static
+    public function removeArticle(Article $article): static // Changer le nom du paramètre pour éviter la confusion
     {
-        $this->name->removeElement($name);
+        $this->articles->removeElement($article);
 
         return $this;
     }

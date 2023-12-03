@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Article;
 use App\Entity\Category;
+use App\Entity\Theater;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -22,6 +23,15 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $faker = Factory ::create ('bg_BG');
+
+        $theaters = [];
+        for ($i = 0; $i < 30; $i++){
+
+            $theater = new Theater;
+            $theater-> setName( $faker ->realTextBetween(3,10));
+            $manager->persist($theater);
+            $theateres[] = $theater;
+        }
        
         $categories = [];
 
@@ -83,11 +93,8 @@ class AppFixtures extends Fixture
     }
 
         $manager->flush();
-    
-       
 
         
     }
 }
 
- 

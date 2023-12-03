@@ -31,7 +31,6 @@ class CategoryController extends AbstractController
         return $this->render('category/item.html.twig', [
             'category' => $category,
         ]);
-
     }
     #[Route('/new', name: 'new_category')]
     public function new(Request $request, EntityManagerInterface $entity): Response
