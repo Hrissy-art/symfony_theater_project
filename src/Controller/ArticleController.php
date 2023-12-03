@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Entity\User;
 use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -67,7 +68,7 @@ class ArticleController extends AbstractController
                 return $this->redirectToRoute('home');
             }
     
-            $articles = $user->getArticles();
+            $articles = $user->getName();
     
             return $this->render('article/me.html.twig', ['articles' => $articles]);
         }
