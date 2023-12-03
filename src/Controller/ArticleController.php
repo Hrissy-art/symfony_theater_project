@@ -38,10 +38,13 @@ class ArticleController extends AbstractController
             $article = new Article();
     
             $form = $this->createForm(ArticleType::class, $article);
-            $form -> handlerequest($request);
+            $form -> handleRequest($request);
     
     if ($form ->isSubmitted() && $form ->isValid())
     {
+        // foreach ($article->getTheaters() as $theater) {
+        //     $em->persist($theater);
+        // }
         $em->persist($article);
         $em-> flush();
     

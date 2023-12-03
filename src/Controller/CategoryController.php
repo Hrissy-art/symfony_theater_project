@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Category;
+use App\Entity\Theater;
 use App\Form\CategoryType;
+use App\Form\TheaterType;
 use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -45,6 +47,21 @@ class CategoryController extends AbstractController
         return $this->renderForm(
             'category/new.html.twig',
             ['form_cat' => $form]
+        );
+    }
+    #[Route('/theater/new', name: 'new_theater')]
+    public function add(Request $request, EntityManagerInterface $entity): Response
+    {
+        $theater = new Theater();
+        $form = $this->createForm(TheaterType ::class, $theater);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entity->persist($theater);
+            $entity->flush();
+        }
+        return $this->renderForm(
+            'category/theater.html.twig',
+            ['form_theater' => $form]
         );
     }
 
