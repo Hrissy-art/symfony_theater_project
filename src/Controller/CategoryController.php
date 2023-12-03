@@ -32,4 +32,12 @@ class CategoryController extends AbstractController
             
         ]);
 
-    }}
+    }
+    #[Route('/new', name: 'new_category')]
+    public function new(): Response
+
+    {
+        return
+    }
+
+}
