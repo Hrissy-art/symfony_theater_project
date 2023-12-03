@@ -18,9 +18,10 @@ class Article
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: 'Title is required')]
+    #[Assert\NotBlank(message: 'This field is required')]
     #[Assert\Length(max: 50)]
-    #[assert\File(maxSize: '50k')]
+    #[assert\File(maxSize: '80k')]
+ 
 
 
     private ?string $nameShow = null;
@@ -41,7 +42,7 @@ class Article
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $summaryShow = null;
 
-    #[ORM\ManyToMany(targetEntity: Theater::class, mappedBy: 'name')]
+    #[ORM\ManyToMany(targetEntity: Theater::class, mappedBy: 'articles')]
     private Collection $theaters;
 
     #[ORM\Column(length: 255, nullable: true)]

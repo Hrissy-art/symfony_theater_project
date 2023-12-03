@@ -42,9 +42,13 @@ class ArticleController extends AbstractController
     
     if ($form ->isSubmitted() && $form ->isValid())
     {
+        
+        $article->setCreatedOn(new \DateTime());
+        $article->setVisible(true);
         // foreach ($article->getTheaters() as $theater) {
         //     $em->persist($theater);
-        // }
+        
+
         $em->persist($article);
         $em-> flush();
     
