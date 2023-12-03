@@ -63,7 +63,6 @@ class ArticleController extends AbstractController
             $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
             $user = $this->getUser();
     
-            // Type-Guard
             if (!$user instanceof User) {
                 return $this->redirectToRoute('home');
             }

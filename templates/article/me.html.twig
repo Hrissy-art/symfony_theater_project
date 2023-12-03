@@ -9,7 +9,7 @@
   <h2>{{ articles|length }} articles</h2>
 
   {% for article in articles %}
-    {{ include('article/_article_card.html.twig', { article: article }) }}
+    {{ include('article/_card_article.html.twig', { article: article }) }}
   {% else %}
     <p>Vous n'avez encore écrit aucun article</p>
   {% endfor %}

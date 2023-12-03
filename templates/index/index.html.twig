@@ -9,12 +9,41 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ title }}! ✅</h1>
+    <h1> {{ title }}! </h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'D:/EMPLOI_FORMATION/2023/FORMATION/HUMAN BOOSTER/Cours/php_2/symfony_theater_project/src/Controller/IndexController.php'|file_link(0) }}">src/Controller/IndexController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'D:/EMPLOI_FORMATION/2023/FORMATION/HUMAN BOOSTER/Cours/php_2/symfony_theater_project/templates/index/index.html.twig'|file_link(0) }}">templates/index/index.html.twig</a></code></li>
-    </ul>
+   <div class="container main-pic">
+    <img src="{{ asset('img/ballet_grand.jpg') }}" class="img-fluid img-principal" alt="theater hall" />
+    <div class="centered">
+        <h1 class="font-sans-serif animate-character font-italic index-title">HERE</h1>
+    </div>
+</div>
+
+<div class="container-fluid presentation">
+    <div class="row m-5">
+        <div class="col-md-4 col-sm-6 p-5 m-5 about_text">
+            <h2>About</h2>
+            <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Distinctio quisquam eius rerum aperiam,
+                doloribus, consequuntur delectus commodi aut ipsum aliquid quos, laborum recusandae corporis. Tenetur hic
+                sequi dolore magni id!
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam qui possimus deleniti hic, veniam alias
+                officiis, exercitationem repellendus nemo eum inventore architecto maxime vel explicabo cupiditate debitis
+                voluptate voluptatibus accusantium quo sunt quia commodi culpa. Aliquid veritatis reprehenderit molestias,
+                dignissimos quaerat quia alias quasi id vel consequuntur eveniet expedita maiores aspernatur! Voluptatibus,
+                expedita voluptate. Obcaecati dolor deleniti necessitatibus error ipsa!
+            </p>
+        </div>
+
+        <div class="col-md-6 col-sm-6 p-4 m-5 about_text">
+            <img src="{{ asset('img/actor.jpg') }}" class="img-fluid" alt="chair" />
+        </div>
+    </div>
+</div>
+
+<!-- J'affiche les trois premiers éléments de ma table "show_actuality" -->
+<div class="container">
+    <div class="row m-5">
+        {# Ajoutez ici le code Twig pour afficher les éléments de la table show_actuality #}
+    </div>
 </div>
 {% endblock %}
