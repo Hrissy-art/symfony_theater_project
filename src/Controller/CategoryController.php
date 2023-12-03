@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
+use App\Form\CategoryType;
 use App\Repository\CategoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileNotFoundException;
@@ -36,8 +38,10 @@ class CategoryController extends AbstractController
     #[Route('/new', name: 'new_category')]
     public function new(): Response
 
-    {
-        return
+    {$category = new Category();
+        $form = $this->createForm(CategoryType::class, $category);
+        return $this->render('category/new.html.twig',
+    ['form_cat' => $form]);
     }
 
 }
